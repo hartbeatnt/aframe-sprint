@@ -7,7 +7,7 @@ class Player extends Component {
   }
 
   render(){
-    return <a-sphere position="0 0 -5" color="red"></a-sphere>
+    return <a-sphere position="0 0 -5" color="blue" lock-on-source></a-sphere>
   }
 }
 

@@ -7,7 +7,7 @@ class EnemyDangerous extends Component {
   }
 
   render(){
-
+    return <a-sphere position={this.props.position} time-to-live='50' lock-on-target></a-sphere>
   }
 }
 

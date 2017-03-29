@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'aframe';
 
-class EnemyHarmless extends Component {
+class Missile extends Component {
   constructor(props){
     super(props);
   }
@@ -11,4 +11,4 @@ class EnemyHarmless extends Component {
   }
 }
 
-export default EnemyHarmless
+export default Missile
