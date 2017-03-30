@@ -6,6 +6,12 @@ import {
 } from './entities';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      targets: []
+    }
+  }
   render() {
     return (
       <a-scene>
@@ -13,6 +19,7 @@ class App extends Component {
           <a-cursor></a-cursor>
         </a-camera>
         <Player />
+        {this.state.targets}
         <EnemyDangerous position="-4 3 -7"/>
         <EnemyDangerous position="-2 5 -6"/>
         <EnemyDangerous position="-7 -1 -7"/>

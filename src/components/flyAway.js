@@ -12,7 +12,7 @@ AFRAME.registerComponent('fly-away', {
     vector: { type: 'vec3'},
     delay: { type: 'int', default: 1000 },
     speed: { type: 'int', default: 20 },
-    acceleration: { type: 'number', default: 0.05 }
+    acceleration: { type: 'number', default: 1.05 }
   },
 
   /**
@@ -24,7 +24,7 @@ AFRAME.registerComponent('fly-away', {
       ? new THREE.Vector3(x,y,z)
       : new THREE.Vector3(
           Math.random(),
-          Math.random(),
+          Math.random(), 
           Math.random()          
       );
     this.vector.normalize();
@@ -32,7 +32,7 @@ AFRAME.registerComponent('fly-away', {
     this.delay = this.data.delay;
     this.speed = this.data.speed;
     this.acceleration = this.data.acceleration;
-    this.createdAt = 0
+    this.createdAt;
   },
 
   /**
@@ -59,8 +59,8 @@ AFRAME.registerComponent('fly-away', {
 
   flyAway: function(deltaTime) {
     let distance = this.speed * deltaTime / 1000;
+    this.speed *= this.acceleration;
     this.el.object3D.translateOnAxis(this.vector, distance);
-    this.speed *= 1 + this.acceleration;
   },
 
   /**
