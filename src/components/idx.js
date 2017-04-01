@@ -4,26 +4,17 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-AFRAME.registerComponent('lock-on-target', {
-  schema: { },
+
+
+AFRAME.registerComponent('idx', {
+  schema: { type: 'int'},
 
   /**
    * Called once when component is attached. Generally for initial setup.
    */
-  init: function () {
-    this.targeted = false;
-    this.source = document.querySelector('[lock-on-source]')
-    if (!this.source) 
-      console.warn("lock-on-target requires an entity with lock-on-source component")
-    
-    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this))
-  },
-
-  onMouseEnter: function() {
-    if (this.source.engaged && this.source.selectedTargets.length < this.source.maxTargets) {
-      this.source.selectedTargets.push(this.el);
-      this.el.targeted = true;
-    }
+  init: function () { 
+    this.el.idx = this.data
+    console.log('element idx:',this.el.idx)
   },
 
   /**
@@ -36,29 +27,23 @@ AFRAME.registerComponent('lock-on-target', {
    * Called when a component is removed (e.g., via removeAttribute).
    * Generally undoes all modifications to the entity.
    */
-  remove: function () {
-  },
+  remove: function () { },
 
   /**
    * Called on each scene tick.
    */
-  tick: function (t) { 
-    if (this.el.targeted) {
-      this.el.setAttribute('material', 'color', 'red')
-    }
+  tick: function (time, deltaTime) {
   },
 
   /**
    * Called when entity pauses.
    * Use to stop or remove any dynamic or background behavior such as events.
    */
-  pause: function () {
-  },
+  pause: function () { },
 
   /**
    * Called when entity resumes.
    * Use to continue or add any dynamic or background behavior such as events.
    */
-  play: function () {
-  }
+  play: function () { }
 });

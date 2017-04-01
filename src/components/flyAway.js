@@ -29,6 +29,7 @@ AFRAME.registerComponent('fly-away', {
       );
     this.vector.normalize();
 
+    this.flown = false;
     this.delay = this.data.delay;
     this.speed = this.data.speed;
     this.acceleration = this.data.acceleration;
@@ -53,8 +54,12 @@ AFRAME.registerComponent('fly-away', {
   tick: function (time, deltaTime) {
     if (!this.createdAt) this.createdAt = time;
     let lifeTime = time - this.createdAt;
-    lifeTime > this.delay && this.flyAway(deltaTime);
-    lifeTime > this.delay + 1500 && this.el.parentEl.removeChild(this.el);
+    if (lifeTime > this.delay) this.flyAway(deltaTime);
+    if (lifeTime > this.delay + 1500 && !this.flown){
+      this.flown = true;
+      this.el.emit('flyAway', {idx: this.el.idx}, true)
+      // this.el.parentEl.removeChild(this.el);
+    }
   },
 
   flyAway: function(deltaTime) {
