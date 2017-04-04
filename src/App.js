@@ -8,9 +8,9 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+    this.idx = 0;
     this.state = {
-      targets: {},
-      idx: 0
+      targets: []
     }
   }
 
@@ -18,14 +18,15 @@ class App extends Component {
     this.spawnEntity()
     // don't forget to delete the following:
     window.addEventListener('click',()=>{
-      console.log(this.state.targets)
+      console.log('click listener')
       this.spawnEntity()
     })
     window.addEventListener('destruction', (e)=>{
       this.removeEntity(e.detail.idx)
     })
-    window.addEventListener('flyAway', (e)=>{
+    window.addEventListener('fly-away', (e)=>{
       console.log('flying away:', e.detail.idx)
+      console.log(this.state.targets.filter(el=>el.props.idx===e.detail.idx)[0].props)
       this.removeEntity(e.detail.idx)
     })
   }
@@ -33,23 +34,27 @@ class App extends Component {
   spawnEntity(){
     let position = this.random('position');
     let flyAway = this.random('flyAway');
-    let temp = {...this.state.targets}
-    temp[this.state.idx] = (
-      <EnemyDangerous
-        fly-away={flyAway} 
-        position={position}
-        idx={this.state.idx}
-      />
-    )
-    this.setState({ targets: temp, idx: this.state.idx+1})
+    console.log('creating element idx',this.idx)
+    this.setState({
+      targets: this.state.targets.concat(
+        <EnemyDangerous
+          fly-away={flyAway} 
+          position={position}
+          idx={this.idx}
+        />
+      )
+    })
+    this.idx++
+    console.log('idx incremented to', this.idx)
     // window.setTimeout(this.spawnEntity.bind(this), 2000)
   }
 
   removeEntity(idx){
-    console.log('trying to remove idx ',idx, this.state.targets[idx])
-    let targets = {...this.state.targets}
-    delete targets[idx]
-    this.setState({ targets }, ()=>{console.log('state:',this.state)})
+    console.log('trying to remove idx ',idx,'from', this.state.targets)
+    this.setState({ 
+      targets: this.state.targets.filter(target=>target.props.idx !== idx)
+    })
+    console.log('state after removeEntity setState:', this.state.targets)
   }
 
   random(param) {
@@ -67,13 +72,14 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <a-scene>
         <a-camera>
           <a-cursor></a-cursor>
         </a-camera>
         <Player />
-        {Object.values(this.state.targets)}   
+        {this.state.targets}   
       </a-scene>
     );
   }

@@ -14,14 +14,15 @@ AFRAME.registerComponent('idx', {
    */
   init: function () { 
     this.el.idx = this.data
-    console.log('element idx:',this.el.idx)
   },
 
   /**
    * Called when component is attached and when component data changes.
    * Generally modifies the entity based on the data.
    */
-  update: function (oldData) { },
+  update: function (oldData) {
+    console.log('element idx changed. new idx:',this.el.idx)
+  },
 
   /**
    * Called when a component is removed (e.g., via removeAttribute).

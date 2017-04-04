@@ -8,13 +8,13 @@ if (typeof AFRAME === 'undefined') {
 const THREE = window.THREE
 
 AFRAME.registerComponent('fly-away', {
+  multiple: true,
   schema: { 
     vector: { type: 'vec3'},
     delay: { type: 'int', default: 1000 },
     speed: { type: 'int', default: 20 },
     acceleration: { type: 'number', default: 1.05 }
   },
-
   /**
    * Called once when component is attached. Generally for initial setup.
    */
@@ -46,7 +46,9 @@ AFRAME.registerComponent('fly-away', {
    * Called when a component is removed (e.g., via removeAttribute).
    * Generally undoes all modifications to the entity.
    */
-  remove: function () { },
+  remove: function () {
+    console.log('remove lifecycle method idx',this.el.idx)
+   },
 
   /**
    * Called on each scene tick.
@@ -57,7 +59,8 @@ AFRAME.registerComponent('fly-away', {
     if (lifeTime > this.delay) this.flyAway(deltaTime);
     if (lifeTime > this.delay + 1500 && !this.flown){
       this.flown = true;
-      this.el.emit('flyAway', {idx: this.el.idx}, true)
+      console.log('emitting flyAway idx',this.el.idx)
+      this.el.emit('fly-away', {idx: this.el.idx}, true)
       // this.el.parentEl.removeChild(this.el);
     }
   },
