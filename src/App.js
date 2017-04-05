@@ -53,7 +53,7 @@ class App extends Component {
     console.log('trying to remove idx ',idx,'from', this.state.targets)
     this.setState({ 
       targets: this.state.targets.filter(target=>target.props.idx !== idx)
-    })
+    },()=>{console.log('setState callback. This.idx:',this.idx)})
     console.log('state after removeEntity setState:', this.state.targets)
   }
 

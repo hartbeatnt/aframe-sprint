@@ -5,6 +5,6 @@ import 'aframe';
 
 export default props => (
   <a-entity>
-    <a-sphere fly-away lock-on-target idx {...props}/>
+    <a-sphere {...props}/>
   </a-entity>
 )

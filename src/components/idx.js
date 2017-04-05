@@ -21,7 +21,10 @@ AFRAME.registerComponent('idx', {
    * Generally modifies the entity based on the data.
    */
   update: function (oldData) {
-    console.log('element idx changed. new idx:',this.el.idx)
+    console.log('element idx changed. new idx:',this.data)
+    console.log('old idx:',oldData)
+    this.el.idx = this.data
+    console.log('this.el.idx post change:',this.el.idx)
   },
 
   /**
