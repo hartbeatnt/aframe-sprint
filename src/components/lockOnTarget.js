@@ -5,13 +5,17 @@ if (typeof AFRAME === 'undefined') {
 }
 
 AFRAME.registerComponent('lock-on-target', {
-  schema: { },
+  dependencies: ["lock-on-source"],
+  schema: {
+    points: {type: 'int', default: 1}
+  },
 
   /**
    * Called once when component is attached. Generally for initial setup.
    */
   init: function () {
     this.targeted = false;
+    this.el.points = this.data.points;
     this.source = document.querySelector('[lock-on-source]')
     if (!this.source) 
       console.warn("lock-on-target requires an entity with lock-on-source component")

@@ -4,50 +4,9 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-
-
 AFRAME.registerComponent('idx', {
   schema: { type: 'int'},
-
-  /**
-   * Called once when component is attached. Generally for initial setup.
-   */
   init: function () { 
     this.el.idx = this.data
-  },
-
-  /**
-   * Called when component is attached and when component data changes.
-   * Generally modifies the entity based on the data.
-   */
-  update: function (oldData) {
-    console.log('element idx changed. new idx:',this.data)
-    console.log('old idx:',oldData)
-    this.el.idx = this.data
-    console.log('this.el.idx post change:',this.el.idx)
-  },
-
-  /**
-   * Called when a component is removed (e.g., via removeAttribute).
-   * Generally undoes all modifications to the entity.
-   */
-  remove: function () { },
-
-  /**
-   * Called on each scene tick.
-   */
-  tick: function (time, deltaTime) {
-  },
-
-  /**
-   * Called when entity pauses.
-   * Use to stop or remove any dynamic or background behavior such as events.
-   */
-  pause: function () { },
-
-  /**
-   * Called when entity resumes.
-   * Use to continue or add any dynamic or background behavior such as events.
-   */
-  play: function () { }
+  }
 });

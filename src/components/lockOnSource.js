@@ -38,8 +38,11 @@ AFRAME.registerComponent('lock-on-source', {
     for (let i = this.el.selectedTargets.length; i > 0; i--) {
       target = this.el.selectedTargets[i-1];
       position = target.object3D.position;
-      target.emit('destruction', { position, idx: target.idx }, true)
-      // target.parentNode.removeChild(target)
+      target.emit('destruction', {
+        position,
+        idx: target.idx,
+        points: target.points,
+      }, true)
     }
     this.el.selectedTargets = [];
   },

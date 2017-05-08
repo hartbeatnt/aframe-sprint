@@ -25,11 +25,10 @@ AFRAME.registerComponent('fly-away', {
       : new THREE.Vector3(
           Math.random(),
           Math.random(), 
-          Math.random()          
+          -1 * Math.abs(Math.random())          
       );
     this.vector.normalize();
 
-    this.flown = false;
     this.delay = this.data.delay;
     this.speed = this.data.speed;
     this.acceleration = this.data.acceleration;
@@ -47,7 +46,6 @@ AFRAME.registerComponent('fly-away', {
    * Generally undoes all modifications to the entity.
    */
   remove: function () {
-    console.log('remove lifecycle method idx',this.el.idx)
    },
 
   /**
@@ -59,8 +57,7 @@ AFRAME.registerComponent('fly-away', {
     if (lifeTime > this.delay) this.flyAway(deltaTime);
     if (lifeTime > this.delay + 1500 && !this.flown){
       this.flown = true;
-      console.log('emitting flyAway idx',this.el.idx)
-      this.el.emit('fly-away', {idx: this.el.idx}, true)
+      this.el.emit('fly-away', {idx: this.el.idx})
       // this.el.parentEl.removeChild(this.el);
     }
   },
