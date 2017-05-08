@@ -11,7 +11,6 @@ AFRAME.registerComponent('lock-on-source', {
    * Called once when component is attached. Generally for initial setup.
    */
   init: function () { 
-    console.log('lock-on component initialized')
     this.el.selectedTargets = [];
     this.el.maxTargets = 5;
     this.el.engaged = false;

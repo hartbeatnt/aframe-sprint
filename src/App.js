@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import 'aframe';
 import './components';
+import { Player } from './entities'
 import {
-  Player, EnemyDangerous
-} from './entities';
-import {
-   random,
-   showScoreUpdate
+   showScoreUpdate,
+   spawnEntities,
 } from './utils'
 
 class App extends Component {
@@ -20,7 +18,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.spawnEntity()
     window.addEventListener('destruction', (e)=>{
       let {points, position, idx} = e.detail;
       this.removeEntity(idx);
@@ -29,24 +26,18 @@ class App extends Component {
     window.addEventListener('fly-away', (e)=>{
       this.removeEntity(e.detail.idx)
     })
+    this.spawnEntities()
   }
 
-  spawnEntity(){
-    let position = random('position');
-    let flyAway = random('flyAway');
+  spawnEntities(){
+    let newEntities = spawnEntities(this.state.idx)
     this.setState(prevState=>{
       return { 
-        targets: prevState.targets.concat(
-          <EnemyDangerous
-            fly-away={flyAway} 
-            position={position}
-            idx={prevState.idx}
-            key={prevState.idx}
-          />),
-        idx: prevState.idx + 1
+        targets: prevState.targets.concat(newEntities.targets),
+        idx: newEntities.idx
       }
     })
-    window.setTimeout(this.spawnEntity.bind(this), 2000)
+    window.setTimeout(this.spawnEntities.bind(this), 2000)
   }
 
   removeEntity(idx) {
@@ -73,7 +64,7 @@ class App extends Component {
           <a-camera>
             <a-cursor></a-cursor>
           </a-camera>
-          <Player />
+          <Player position="0 0 -5"/>
           {this.state.targets}   
         </a-scene>
       </div>

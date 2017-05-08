@@ -2,5 +2,10 @@ import React, { Component } from 'react';
 import 'aframe';
 
 export default props => (
-  <a-sphere lock-on-target='points:1' {...props} />
+  <a-sphere
+    {...props}
+    lock-on-target='points:2'
+    color='orange'
+    missile-launcher
+  />
 )

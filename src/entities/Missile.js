@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import 'aframe';
 
-class Missile extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    
-  }
-}
-
-export default Missile
+export default props => (
+  <a-cylinder
+    {...props}
+    lock-on-target='points:1'
+    color='red'
+  />
+)

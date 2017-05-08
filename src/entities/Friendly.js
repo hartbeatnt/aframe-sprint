@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import 'aframe';
 
-class Friendly extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-
-  }
-}
-
-export default Friendly
+export default props => (
+  <a-sphere
+    {...props}
+    lock-on-target='points:-1'
+    color='lightblue'
+  />
+)
