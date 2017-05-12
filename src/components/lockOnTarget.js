@@ -14,16 +14,20 @@ AFRAME.registerComponent('lock-on-target', {
    */
   init: function () {
     this.targeted = false;
+    this.el.lockOnTarget = true;
     this.el.points = this.data.points;
     this.source = document.querySelector('[lock-on-source]')
     if (!this.source) 
       console.warn("lock-on-target requires an entity with lock-on-source component")
     
-    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this), true)
+    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this), true)    
   },
 
   onMouseEnter: function() {
-    if (this.source.engaged && this.source.selectedTargets.length < this.source.maxTargets) {
+    if (this.source.engaged 
+      && this.source.selectedTargets.length < this.source.maxTargets
+      && !this.el.targeted
+    ) {
       this.source.selectedTargets.push(this.el);
       this.el.targeted = true;
     }

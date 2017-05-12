@@ -9,6 +9,7 @@ import LifeCube from './LifeCube.jsx'
 export {
   EnemyDangerous,
   EnemyHarmless,
+  LifeCube,
   Friendly,
   Missile,
   Particle,

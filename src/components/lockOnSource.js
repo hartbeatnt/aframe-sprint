@@ -21,6 +21,7 @@ AFRAME.registerComponent('lock-on-source', {
   onKeyDown: function(event) {
     if (event.key === ' ') {
       this.el.engaged = true;
+      this.rayCheck();
     }
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'false')
@@ -35,6 +36,14 @@ AFRAME.registerComponent('lock-on-source', {
     }
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'true')
+    }
+  },
+
+  rayCheck: function() {
+    let intersect = document.querySelector('a-cursor').components.cursor.intersectedEl
+    if (intersect && intersect.lockOnTarget) {
+      this.el.selectedTargets = this.el.selectedTargets.concat(intersect)
+      intersect.targeted = true;
     }
   },
 

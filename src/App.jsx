@@ -5,23 +5,25 @@ import {
   Player,
   Missile,
   LifeCube
-} from './entities'
+} from './entities';
 import {
    showScoreUpdate,
    spawnEntities,
    createExplosion,
-} from './utils'
+} from './utils';
 const STARTING_LIVES = 3;
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const startingLives = new Array(STARTING_LIVES).map((a,i) => {
-      <LifeCube 
+    let startingLives = [];
+    for (let i = 0; i < STARTING_LIVES; i++) {
+      startingLives.push(<LifeCube 
         key={i}
         position={`${0.5 * i - 0.5} -1 0`}
-      />
-    });
+      />)
+    }
+
     this.initialState = {
       score: 0,
       idx: 0,
@@ -124,9 +126,9 @@ class App extends Component {
         <a-scene ref='scene'>
           <a-assets></a-assets>
           <a-camera>
-            <a-cursor></a-cursor>
+            <a-cursor fuse="true" fuseTImeout="0"/>
           </a-camera>
-          <Player position="0 0 -5">
+          <Player position="0 0 -5" id="player">
             {this.state.lives}
           </Player>
           {this.state.targets}   
