@@ -5,7 +5,7 @@ if (typeof AFRAME === 'undefined') {
 }
 
 AFRAME.registerComponent('lock-on-source', {
-  schema: { },
+  schema: { type: 'int', default: 1 },
 
   init: function () { 
     this.el.selectedTargets = [];
@@ -23,7 +23,6 @@ AFRAME.registerComponent('lock-on-source', {
 
   onKeyDown: function(event) {
     if (event.key === 'Shift') {
-      console.log('shift')
       this.el.setAttribute('visible', 'false')
     } else if (event.key === ' ') {
       this.el.engaged = true;
