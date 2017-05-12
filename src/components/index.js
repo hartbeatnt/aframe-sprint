@@ -1,6 +1,5 @@
 import './lockOnSource'
 import './lockOnTarget'
-import './flightPath'
 import './flyAway'
 import './idx'
 import './missile-launcher'

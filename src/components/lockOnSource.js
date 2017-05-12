@@ -7,35 +7,48 @@ if (typeof AFRAME === 'undefined') {
 AFRAME.registerComponent('lock-on-source', {
   schema: { },
 
-  /**
-   * Called once when component is attached. Generally for initial setup.
-   */
   init: function () { 
     this.el.selectedTargets = [];
     this.el.maxTargets = 5;
     this.el.engaged = false;
-    window.addEventListener('keydown', this.onKeyDown.bind(this))
-    window.addEventListener('keyup', this.onKeyUp.bind(this))
+
+    this.onKeyDown = this.onKeyDown.bind(this)
+    this.onKeyUp = this.onKeyUp.bind(this)
+    this.onMouseEnter = this.onMouseEnter.bind(this)
+
+    window.addEventListener('keydown', this.onKeyDown)
+    window.addEventListener('keyup', this.onKeyUp)
+    window.addEventListener('mouseenter',this.onMouseEnter)
   },
 
   onKeyDown: function(event) {
-    if (event.key === ' ') {
+    if (event.key === 'Shift') {
+      console.log('shift')
+      this.el.setAttribute('visible', 'false')
+    } else if (event.key === ' ') {
       this.el.engaged = true;
       this.rayCheck();
-    }
-    if (event.key === 'Shift') {
-      this.el.setAttribute('visible', 'false')
     }
   },
 
   onKeyUp: function(event) {
     event.preventDefault()
-    if (event.key === ' ') {
+    if (event.key === 'Shift') {
+      this.el.setAttribute('visible', 'true')
+    } else if (event.key === ' ') {
       this.el.engaged = false;
       this.destroyTargets();
     }
-    if (event.key === 'Shift') {
-      this.el.setAttribute('visible', 'true')
+  },
+
+  onMouseEnter: function(event) {
+    if (this.el.engaged 
+      && this.el.selectedTargets.length < this.el.maxTargets
+      && event.target.lockOnSource
+      && !event.target.targeted
+    ) {
+      this.el.selectedTargets = this.el.selectedTargets.concat(event.target);
+      event.target.targeted = true;
     }
   },
 
@@ -60,41 +73,10 @@ AFRAME.registerComponent('lock-on-source', {
     }
     this.el.selectedTargets = [];
   },
-  /**
-   * Called when component is attached and when component data changes.
-   * Generally modifies the entity based on the data.
-   */
-  update: function (oldData) { },
 
-  /**
-   * Called when a component is removed (e.g., via removeAttribute).
-   * Generally undoes all modifications to the entity.
-   */
-  remove: function () {
-    // window.removeEventListener('keydown', this.onKeyDown.bind(this))
-    // window.removeEventListener('keyup', this.onKeyUp.bind(this))
-  },
-
-  /**
-   * Called on each scene tick.
-   */
-  tick: function (t) { },
-
-  /**
-   * Called when entity pauses.
-   * Use to stop or remove any dynamic or background behavior such as events.
-   */
-  pause: function () {
-    // window.removeEventListener('keydown', this.onKeyDown.bind(this))
-    // window.removeEventListener('keyup', this.onKeyUp.bind(this))
-  },
-
-  /**
-   * Called when entity resumes.
-   * Use to continue or add any dynamic or background behavior such as events.
-   */
-  play: function () {
-    // window.addEventListener('keydown', this.onKeyDown.bind(this))
-    // window.addEventListener('keyup', this.onKeyUp.bind(this))
+  remove() {
+    window.removeEventListener('keydown', this.onKeyDown)
+    window.removeEventListener('keyup', this.onKeyUp)
+    window.removeEventListener('mouseenter',this.onMouseEnter)
   }
 });
