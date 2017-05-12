@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import 'aframe';
 
-export default props => (
-  <a-sphere {...props} color="blue" lock-on-source opacity="0.5"/>
+const Player = props => (
+  <a-sphere 
+    {...props} 
+    color="blue" 
+    opacity="0.5"
+    lock-on-source 
+  />
 )
+
+export default Player

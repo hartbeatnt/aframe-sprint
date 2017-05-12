@@ -6,7 +6,7 @@ import {
   Friendly
 } from '../entities'
 
-const spawnEntities = (idx) => {
+const spawnEntities = idx => {
   let position = random('position');
   let flyAway = random('flyAway');
   let targets = [];
@@ -39,10 +39,7 @@ const spawnEntities = (idx) => {
       />)
     idx++;
   }
-  return {
-    targets,
-    idx,
-  }
+  return targets;
 }  
 
 export default spawnEntities

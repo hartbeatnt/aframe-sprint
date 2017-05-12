@@ -19,10 +19,7 @@ const createExplosion = (position,idx) => {
     />
     particles.push(particle)
   }
-  return {
-    particles,
-    idx: idx+numParticles,
-  }
+  return particles;
 }
 
 export default createExplosion

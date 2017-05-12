@@ -14,7 +14,7 @@ AFRAME.registerComponent('missile', {
     this.target = document.querySelector('[lock-on-source]');
 
     this.speed = 5;
-    this.maxSpeed = 25;
+    this.maxSpeed = 20;
     this.acceleration = 1.05;
   },
 

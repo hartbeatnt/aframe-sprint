@@ -11,7 +11,7 @@ AFRAME.registerComponent('missile-launcher', {
    * Called once when component is attached. Generally for initial setup.
    */
   init: function () {
-    this.rateOfFire = 1000;
+    this.rateOfFire = 1500;
     this.timestamp = performance.now();
   },
 
@@ -45,10 +45,14 @@ AFRAME.registerComponent('missile-launcher', {
    * Called when entity pauses.
    * Use to stop or remove any dynamic or background behavior such as events.
    */
-  pause: function () { },
+  pause: function () {
+    this.timestamp = performance.now()
+  },
   /**
    * Called when entity resumes.
    * Use to continue or add any dynamic or background behavior such as events.
    */
-  play: function () { },
+  play: function () {
+    this.timestamp = performance.now()
+  },
 });

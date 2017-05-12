@@ -4,6 +4,7 @@ import Friendly from './Friendly.jsx'
 import Missile from './Missile.jsx'
 import Particle from './Particle.jsx'
 import Player from './Player.jsx'
+import LifeCube from './LifeCube.jsx'
 
 export {
   EnemyDangerous,

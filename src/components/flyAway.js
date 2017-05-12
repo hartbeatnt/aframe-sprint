@@ -8,7 +8,6 @@ if (typeof AFRAME === 'undefined') {
 const THREE = window.THREE
 
 AFRAME.registerComponent('fly-away', {
-  multiple: true,
   schema: { 
     vector: { type: 'vec3'},
     delay: { type: 'int', default: 1000 },
