@@ -23,9 +23,9 @@ AFRAME.registerComponent('fly-away', {
     this.vector = x || y || z
       ? new THREE.Vector3(x,y,z)
       : new THREE.Vector3(
-          Math.random(),
-          Math.random(), 
-          -1 * Math.abs(Math.random())          
+          -1 + 2*Math.random(),
+          -1 + 2*Math.random(), 
+          -1 * Math.random()          
       );
     this.vector.normalize();
 

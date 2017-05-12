@@ -22,6 +22,9 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === ' ') {
       this.el.engaged = true;
     }
+    if (event.key === 'Shift') {
+      this.el.setAttribute('visible', 'false')
+    }
   },
 
   onKeyUp: function(event) {
@@ -29,6 +32,9 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === ' ') {
       this.el.engaged = false;
       this.destroyTargets();
+    }
+    if (event.key === 'Shift') {
+      this.el.setAttribute('visible', 'true')
     }
   },
 

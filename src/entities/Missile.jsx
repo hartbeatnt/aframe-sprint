@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import 'aframe';
 
 export default props => (
-  <a-cylinder
+  <a-sphere
     {...props}
     lock-on-target='points:1'
-    color='red'
+    color='black'
+    scale="0.5 0.5 0.5"
+    missile
   />
 )

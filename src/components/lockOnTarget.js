@@ -5,7 +5,6 @@ if (typeof AFRAME === 'undefined') {
 }
 
 AFRAME.registerComponent('lock-on-target', {
-  dependencies: ["lock-on-source"],
   schema: {
     points: {type: 'int', default: 1}
   },
@@ -20,7 +19,7 @@ AFRAME.registerComponent('lock-on-target', {
     if (!this.source) 
       console.warn("lock-on-target requires an entity with lock-on-source component")
     
-    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this))
+    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this), true)
   },
 
   onMouseEnter: function() {

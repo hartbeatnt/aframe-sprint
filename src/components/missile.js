@@ -4,15 +4,18 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-AFRAME.registerComponent('missile-launcher', {
-  schema: {  },
+AFRAME.registerComponent('missile', {
+  schema: { },
 
   /**
    * Called once when component is attached. Generally for initial setup.
    */
   init: function () {
-    this.rateOfFire = 1000;
-    this.timestamp = performance.now();
+    this.target = document.querySelector('[lock-on-source]');
+
+    this.speed = 5;
+    this.maxSpeed = 25;
+    this.acceleration = 1.05;
   },
 
   /**
@@ -30,14 +33,20 @@ AFRAME.registerComponent('missile-launcher', {
   /**
    * Called on each scene tick.
    */
-  tick: function (time) { 
-    if (time - this.timestamp > this.rateOfFire) {
-      let {x,y,z} = this.el.object3D.position
-      this.timestamp = time;
-      this.el.emit('missile-launch', {
-        position: `${x} ${y} ${z}`
+  tick: function (time, deltaTime) {
+    let target = this.target.object3D.position.clone();
+    if (this.el.object3D.position.distanceTo(target) > 1.5){
+      let distance = this.speed * deltaTime / 1000;
+      if (this.speed < this.maxSpeed) this.speed *= this.acceleration;
+      let vector = target.sub(this.el.object3D.position).normalize();
+      this.el.object3D.translateOnAxis(vector, distance);
+    } else {
+      this.el.emit('missile-hit',{
+        idx:this.el.idx,
+        position: this.el.object3D.position,
       })
     }
+
   },
 
 
