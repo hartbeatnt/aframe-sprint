@@ -13,7 +13,7 @@ https://docs.google.com/presentation/d/1W_QRLqOEDKKe1yUQBKYuLdpWnmBLBhWVF7EabXXi
 
 >npm install
 
->npm run
+>npm start
 
 The bundle will be created and served. A browser window should open, if not open one and direct it to localhost:3000
 
