@@ -6,6 +6,7 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "aframe": "^0.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
@@ -14,5 +15,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hartbeatnt/aframe-sprint.git"
+  },
+  "author": "Nathaniel Hart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hartbeatnt/aframe-sprint/issues"
+  },
+  "homepage": "https://github.com/hartbeatnt/aframe-sprint#readme"
 }
