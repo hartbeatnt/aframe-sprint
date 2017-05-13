@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import 'aframe';
 
 export default props => (
-  <a-box
+  <a-collada-model
     {...props}
-    height='0.25'
-    width='0.25'
-    depth='0.25'
-    color='black'
+    scale="0.05 0.05 0.05"
+    src='#heart'
   />
 )

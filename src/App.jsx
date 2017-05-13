@@ -20,7 +20,7 @@ class App extends Component {
     for (let i = 0; i < STARTING_LIVES; i++) {
       startingLives.push(<LifeCube 
         key={i}
-        position={`${0.5 * i - 0.5} -1 0`}
+        position={`${0.5 * i - 0.7} -1.7 0`}
       />)
     }
 
@@ -124,7 +124,9 @@ class App extends Component {
     return this.state.lives.length > 0 ? (
       <div>
         <a-scene ref='scene'>
-          <a-assets></a-assets>
+          <a-assets>
+            <a-asset-item id="heart" src={`${process.env.PUBLIC_URL}/models/heart.dae`}></a-asset-item>
+          </a-assets>
           <a-camera>
             <a-cursor/>
           </a-camera>
