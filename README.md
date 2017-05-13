@@ -18,7 +18,7 @@ Edit the source code files in your favorite text editor or IDE to complete as ma
 2. Implement event listeners in the App component
 3. Complete the lock-on-source and lock-on-target components to allow the player to target and destroy enemy entities
 4. Complete the fly-away component to cause entities  to fly out of the scene if they are not destroyed in time
-5. complete the missile-launcher component to give dangerous enemies the ability to shoot missiles at the player
+5. Complete the missile-launcher component to give dangerous enemies the ability to shoot missiles at the player
 6. Have the player lose a life when hit by a missile
 7. End the game when the player runs out of lives
 
@@ -33,11 +33,14 @@ Edit the source code files in your favorite text editor or IDE to complete as ma
 
 ## Advanced Content:
 1. Load in 3D models for the player and targets instead simple sphere primitives
-2. Create different difficulty modes, or have the difficulty progressively increase with time
-3. Create a "flight-path" component that causes entities to move along a designated path before flying away
-4. Modify the spawnEntities() function in the utils directory to spawn groups of entities laid out in formation rather than one at a time
-5. Prevent the application from generating new entities when the window is not active (currently A-Frame pauses but React does not)
-6. Build a back end to keep track of high-scores, user accounts, and leader boards
+2. Add sound effects
+3. Implement new enemy and friendly types - perhaps an armored enemy that needs to be hit more than once to be destroyed, or a rapid-fire enemy that launches missiles at a faster rate
+4. Add powerups that enemies and friendlies drop -- they could be extra lives, or a bigger cursor, or a bomb that will destroy anything on screen. Enemies could drop powerups when they are destroyed and friendlies could drop them when they fly away 
+5. Create different difficulty modes, or have the difficulty progressively increase with time
+6. Create a "flight-path" component that causes entities to move along a designated path before flying away
+7. Modify the spawnEntities() function in the utils directory to spawn groups of entities laid out in formation rather than one at a time
+8. Prevent the application from generating new entities when the window is not active (currently A-Frame pauses but React does not)
+9. Build a back end to keep track of high-scores, user accounts, and leader boards
 
 This workshop is a work in progress, so if you find an optimization or implement a cool new feature, feel free to send a pull request and maybe your code will make it into the next iteration!
 
