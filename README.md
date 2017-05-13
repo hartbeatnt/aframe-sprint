@@ -1,3 +1,9 @@
+slides for history of VR / Intro to Aframe:
+https://docs.google.com/presentation/d/1TFNlNaAAq9XQAkSzMjsUq_neW1CVovD9rkFAik59HVI/edit?usp=sharing
+
+slides for advanced Aframe / React integration: 
+https://docs.google.com/presentation/d/1W_QRLqOEDKKe1yUQBKYuLdpWnmBLBhWVF7EabXXi56M/edit?usp=sharing
+
 ## First Steps:
 
 1. fork this repo to your github account
