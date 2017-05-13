@@ -14,7 +14,6 @@ AFRAME.registerComponent('lock-on-source', {
 
     this.onKeyDown = this.onKeyDown.bind(this)
     this.onKeyUp = this.onKeyUp.bind(this)
-    this.onMouseEnter = this.onMouseEnter.bind(this)
 
     window.addEventListener('keydown', this.onKeyDown)
     window.addEventListener('keyup', this.onKeyUp)
@@ -26,7 +25,6 @@ AFRAME.registerComponent('lock-on-source', {
       this.el.setAttribute('visible', 'false')
     } else if (event.key === ' ') {
       this.engaged = true;
-      // this.rayCheck();
     }
   },
 
@@ -40,26 +38,15 @@ AFRAME.registerComponent('lock-on-source', {
     }
   },
 
-  onMouseEnter: function(event) {
-    // if (this.el.engaged 
-    //   && this.el.selectedTargets.length < this.el.maxTargets
-    //   && event.target.lockOnSource
-    //   && !event.target.targeted
-    // ) {
-    //   this.el.selectedTargets = this.el.selectedTargets.concat(event.target);
-    //   event.target.targeted = true;
-    // }
-  },
-
   rayCheck: function() {
-    let intersect = document.querySelector('a-cursor').components.cursor.intersectedEl
+    let cursor = document.querySelector('a-cursor').components.cursor
     if (
-      intersect 
-      && intersect.lockOnTarget 
+      cursor.intersectedEl 
+      && cursor.intersectedEl.lockOnTarget 
       && this.selectedTargets.length < this.maxTargets
     ) {
-      this.electedTargets = this.selectedTargets.concat(intersect)
-      intersect.targeted = true;
+      this.selectedTargets = this.selectedTargets.concat(cursor.intersectedEl)
+      cursor.intersectedEl.targeted = true;
     }
   },
 
