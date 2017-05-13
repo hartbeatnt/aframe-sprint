@@ -126,7 +126,7 @@ class App extends Component {
         <a-scene ref='scene'>
           <a-assets></a-assets>
           <a-camera>
-            <a-cursor fuse="true" fuseTImeout="0"/>
+            <a-cursor/>
           </a-camera>
           <Player position="0 0 -5" id="player">
             {this.state.lives}
