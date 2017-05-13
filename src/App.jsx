@@ -125,7 +125,8 @@ class App extends Component {
       <div>
         <a-scene ref='scene'>
           <a-assets>
-            <a-asset-item id="heart" src={`${process.env.PUBLIC_URL}/models/heart.dae`}></a-asset-item>
+            <a-asset-item id="heart" src={`${process.env.PUBLIC_URL}/models/heart.dae`} />
+            <a-asset-item id="missile" src={`${process.env.PUBLIC_URL}/models/missile.dae`} />
           </a-assets>
           <a-camera>
             <a-cursor/>
