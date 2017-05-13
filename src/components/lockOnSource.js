@@ -8,9 +8,9 @@ AFRAME.registerComponent('lock-on-source', {
   schema: { type: 'int', default: 1 },
 
   init: function () { 
-    this.el.selectedTargets = [];
-    this.el.maxTargets = 5;
-    this.el.engaged = false;
+    this.selectedTargets = [];
+    this.maxTargets = 5;
+    this.engaged = false;
 
     this.onKeyDown = this.onKeyDown.bind(this)
     this.onKeyUp = this.onKeyUp.bind(this)
@@ -25,8 +25,8 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'false')
     } else if (event.key === ' ') {
-      this.el.engaged = true;
-      this.rayCheck();
+      this.engaged = true;
+      // this.rayCheck();
     }
   },
 
@@ -35,34 +35,38 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'true')
     } else if (event.key === ' ') {
-      this.el.engaged = false;
+      this.engaged = false;
       this.destroyTargets();
     }
   },
 
   onMouseEnter: function(event) {
-    if (this.el.engaged 
-      && this.el.selectedTargets.length < this.el.maxTargets
-      && event.target.lockOnSource
-      && !event.target.targeted
-    ) {
-      this.el.selectedTargets = this.el.selectedTargets.concat(event.target);
-      event.target.targeted = true;
-    }
+    // if (this.el.engaged 
+    //   && this.el.selectedTargets.length < this.el.maxTargets
+    //   && event.target.lockOnSource
+    //   && !event.target.targeted
+    // ) {
+    //   this.el.selectedTargets = this.el.selectedTargets.concat(event.target);
+    //   event.target.targeted = true;
+    // }
   },
 
   rayCheck: function() {
     let intersect = document.querySelector('a-cursor').components.cursor.intersectedEl
-    if (intersect && intersect.lockOnTarget) {
-      this.el.selectedTargets = this.el.selectedTargets.concat(intersect)
+    if (
+      intersect 
+      && intersect.lockOnTarget 
+      && this.selectedTargets.length < this.maxTargets
+    ) {
+      this.electedTargets = this.selectedTargets.concat(intersect)
       intersect.targeted = true;
     }
   },
 
   destroyTargets() {
     let target, position
-    for (let i = this.el.selectedTargets.length; i > 0; i--) {
-      target = this.el.selectedTargets[i-1];
+    for (let i = this.selectedTargets.length; i > 0; i--) {
+      target = this.selectedTargets[i-1];
       position = target.object3D.position;
       target.emit('destruction', {
         position,
@@ -70,7 +74,13 @@ AFRAME.registerComponent('lock-on-source', {
         points: target.points,
       }, true)
     }
-    this.el.selectedTargets = [];
+    this.selectedTargets = [];
+  },
+
+  tick() {
+    if (this.engaged) {
+      this.rayCheck();
+    }
   },
 
   remove() {
