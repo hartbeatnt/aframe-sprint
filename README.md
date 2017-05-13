@@ -39,8 +39,9 @@ Edit the source code files in your favorite text editor or IDE to complete as ma
 5. Create different difficulty modes, or have the difficulty progressively increase with time
 6. Create a "flight-path" component that causes entities to move along a designated path before flying away
 7. Modify the spawnEntities() function in the utils directory to spawn groups of entities laid out in formation rather than one at a time
-8. Prevent the application from generating new entities when the window is not active (currently A-Frame pauses but React does not)
-9. Build a back end to keep track of high-scores, user accounts, and leader boards
+8. Prevent entities from spawning in a position that is blocked by the player
+9. Prevent the application from generating new entities when the window is not active (currently A-Frame pauses but React does not)
+0. Build a back end to keep track of high-scores, user accounts, and leader boards
 
 This workshop is a work in progress, so if you find an optimization or implement a cool new feature, feel free to send a pull request and maybe your code will make it into the next iteration!
 
