@@ -19,7 +19,6 @@ const spawnEntities = idx => {
         idx={idx}
         key={idx}
       />)
-    idx++;
   } else if (rand < 0.75) {
     targets.push(
       <EnemyHarmless
@@ -28,7 +27,6 @@ const spawnEntities = idx => {
         idx={idx}
         key={idx}
       />)
-    idx++;
   } else {
     targets.push(
       <Friendly
@@ -37,7 +35,6 @@ const spawnEntities = idx => {
         idx={idx}
         key={idx}
       />)
-    idx++;
   }
   return targets;
 }  

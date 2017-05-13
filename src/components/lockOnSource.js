@@ -25,8 +25,8 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'false')
     } else if (event.key === ' ') {
-      this.el.engaged = true;
       this.rayCheck();
+      // implement me 
     }
   },
 
@@ -35,19 +35,18 @@ AFRAME.registerComponent('lock-on-source', {
     if (event.key === 'Shift') {
       this.el.setAttribute('visible', 'true')
     } else if (event.key === ' ') {
-      this.el.engaged = false;
-      this.destroyTargets();
+      // implement me -- should destroy any
+      // selected targets when space bar is
+      // released
     }
   },
 
   onMouseEnter: function(event) {
+    console.log(event.target)
     if (this.el.engaged 
-      && this.el.selectedTargets.length < this.el.maxTargets
-      && event.target.lockOnSource
-      && !event.target.targeted
     ) {
-      this.el.selectedTargets = this.el.selectedTargets.concat(event.target);
-      event.target.targeted = true;
+      // implement me -- should add any targetable entities
+      // to this.targets 
     }
   },
 
@@ -57,20 +56,6 @@ AFRAME.registerComponent('lock-on-source', {
       this.el.selectedTargets = this.el.selectedTargets.concat(intersect)
       intersect.targeted = true;
     }
-  },
-
-  destroyTargets() {
-    let target, position
-    for (let i = this.el.selectedTargets.length; i > 0; i--) {
-      target = this.el.selectedTargets[i-1];
-      position = target.object3D.position;
-      target.emit('destruction', {
-        position,
-        idx: target.idx,
-        points: target.points,
-      }, true)
-    }
-    this.el.selectedTargets = [];
   },
 
   remove() {

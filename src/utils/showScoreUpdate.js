@@ -10,7 +10,6 @@ const showScoreUpdate = (points, position) => {
   setTimeout(()=>{
     document.querySelector('a-scene').removeChild(message)
   }, 500)
-
 }
 
 export default showScoreUpdate;

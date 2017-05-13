@@ -7,6 +7,6 @@ if (typeof AFRAME === 'undefined') {
 AFRAME.registerComponent('idx', {
   schema: { type: 'int'},
   init: function () { 
-    this.el.idx = this.data
+    // attach an 'idx' property to the element to which this component is attached
   }
 });

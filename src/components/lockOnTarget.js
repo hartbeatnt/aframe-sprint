@@ -12,14 +12,13 @@ AFRAME.registerComponent('lock-on-target', {
   init: function () {
     if (!document.querySelector('[lock-on-source]')) 
       console.warn("lock-on-target requires an entity with lock-on-source component")
-    this.el.points = this.data.points;
-    this.el.lockOnTarget = true;
-    this.el.targeted = false;
+   // fill me in
   },
 
   tick: function (t) { 
     if (this.el.targeted) {
-      this.el.setAttribute('material', 'color', 'red')
+      // create some sort of visual indication 
+      // that the entity has been targeted
     }
   }
 });
