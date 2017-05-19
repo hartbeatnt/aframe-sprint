@@ -1,8 +1,6 @@
-slides for history of VR / Intro to Aframe:
-https://docs.google.com/presentation/d/1TFNlNaAAq9XQAkSzMjsUq_neW1CVovD9rkFAik59HVI/edit?usp=sharing
+[slides for Intro to Aframe](https://docs.google.com/presentation/d/1TFNlNaAAq9XQAkSzMjsUq_neW1CVovD9rkFAik59HVI/edit?usp=sharing)
 
-slides for advanced Aframe / React integration: 
-https://docs.google.com/presentation/d/1W_QRLqOEDKKe1yUQBKYuLdpWnmBLBhWVF7EabXXi56M/edit?usp=sharing
+[slides for advanced Aframe / React integration](https://docs.google.com/presentation/d/1W_QRLqOEDKKe1yUQBKYuLdpWnmBLBhWVF7EabXXi56M/edit?usp=sharing)
 
 ## First Steps:
 
@@ -13,7 +11,7 @@ https://docs.google.com/presentation/d/1W_QRLqOEDKKe1yUQBKYuLdpWnmBLBhWVF7EabXXi
 
 >npm install
 
->npm start
+>npm run
 
 The bundle will be created and served. A browser window should open, if not open one and direct it to localhost:3000
 
@@ -45,11 +43,23 @@ Edit the source code files in your favorite text editor or IDE to complete as ma
 5. Create different difficulty modes, or have the difficulty progressively increase with time
 6. Create a "flight-path" component that causes entities to move along a designated path before flying away
 7. Modify the spawnEntities() function in the utils directory to spawn groups of entities laid out in formation rather than one at a time
-8. Prevent entities from spawning in a position that is blocked by the player
-9. Prevent the application from generating new entities when the window is not active (currently A-Frame pauses but React does not)
-0. Build a back end to keep track of high-scores, user accounts, and leader boards
+8. Build a back end to keep track of high-scores, user accounts, and leader boards
 
 This workshop is a work in progress, so if you find an optimization or implement a cool new feature, feel free to send a pull request and maybe your code will make it into the next iteration!
+
+## To play the game:
+
+[deployed version of completed project](http://bubbleblaster.surge.sh)
+
+1. You are the big blue bubble
+2. click and drag (or look if playing in VR) to position the cursor over enemies
+3. press space to lock onto targets
+4. release space to fire at locked-on targets
+5. light blue targets are your friends - don't shoot them
+6. yellow targets are harmless enemies -- you can shoot them but they are not worth very many points
+7. orange targets are dangerous - shoot them before they shoot missiles at you!
+8. black target are missiles. If you don't shoot them down before they hit you, you will lose a life
+9. lose three lives and its game over, buster!
 
 #### This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
