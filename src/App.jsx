@@ -129,7 +129,13 @@ class App extends Component {
             <a-asset-item id="missile" src={`${process.env.PUBLIC_URL}/models/missile.dae`} />
           </a-assets>
           <a-camera>
-            <a-cursor/>
+            <a-entity 
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+              material="color: black; shader: flat"
+              raycaster="objects:[lock-on-target]"
+              >
+            </a-entity>
           </a-camera>
           <Player position="0 0 -5" id="player">
             {this.state.lives}

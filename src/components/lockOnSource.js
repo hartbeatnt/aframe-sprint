@@ -17,7 +17,6 @@ AFRAME.registerComponent('lock-on-source', {
 
     window.addEventListener('keydown', this.onKeyDown)
     window.addEventListener('keyup', this.onKeyUp)
-    window.addEventListener('mouseenter',this.onMouseEnter)
   },
 
   onKeyDown: function(event) {
@@ -39,14 +38,14 @@ AFRAME.registerComponent('lock-on-source', {
   },
 
   rayCheck: function() {
-    let cursor = document.querySelector('a-cursor').components.cursor
+    let cursor = document.querySelector('[raycaster]').components.raycaster
     if (
-      cursor.intersectedEl 
-      && cursor.intersectedEl.lockOnTarget 
+      cursor.intersectedEls[0] 
+      && cursor.intersectedEls[0].lockOnTarget 
       && this.selectedTargets.length < this.maxTargets
     ) {
-      this.selectedTargets = this.selectedTargets.concat(cursor.intersectedEl)
-      cursor.intersectedEl.targeted = true;
+      this.selectedTargets = this.selectedTargets.concat(cursor.intersectedEls[0])
+      cursor.intersectedEls[0].targeted = true;
     }
   },
 
