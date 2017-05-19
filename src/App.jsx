@@ -4,7 +4,8 @@ import './components';
 import { 
   Player,
   Missile,
-  LifeCube
+  LifeCube,
+  Cursor
 } from './entities';
 import {
    showScoreUpdate,
@@ -34,6 +35,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+    this.scene = document.querySelector('a-scene');
     window.addEventListener('destruction', e => {
       let {points, position, idx} = e.detail;
       this.removeTarget(idx);
@@ -53,8 +55,10 @@ class App extends Component {
   }
 
   spawnEntities() {
-    let newEntities = spawnEntities(this.state.idx);
-    this.addTargets(newEntities);
+    if (!document.hidden) {
+      let newEntities = spawnEntities(this.state.idx);
+      this.addTargets(newEntities);
+    }
     if (this.state.lives.length > 0) {
       window.setTimeout(this.spawnEntities.bind(this), 500);
     }
@@ -129,13 +133,7 @@ class App extends Component {
             <a-asset-item id="missile" src={`${process.env.PUBLIC_URL}/models/missile.dae`} />
           </a-assets>
           <a-camera>
-            <a-entity 
-              position="0 0 -1"
-              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-              material="color: black; shader: flat"
-              raycaster="objects:[lock-on-target]"
-              >
-            </a-entity>
+            <Cursor/>
           </a-camera>
           <Player position="0 0 -5" id="player">
             {this.state.lives}
