@@ -36,6 +36,8 @@ class App extends Component {
 
   componentDidMount(){
     this.scene = document.querySelector('a-scene');
+    window.onblur=()=>this.scene.pause();
+    window.onfocus=()=>this.scene.play();
     window.addEventListener('destruction', e => {
       let {points, position, idx} = e.detail;
       this.removeTarget(idx);
@@ -55,7 +57,7 @@ class App extends Component {
   }
 
   spawnEntities() {
-    if (!document.hidden) {
+    if (this.scene.isPlaying) {
       let newEntities = spawnEntities(this.state.idx);
       this.addTargets(newEntities);
     }

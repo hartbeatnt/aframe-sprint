@@ -46,5 +46,13 @@ AFRAME.registerComponent('fly-away', {
     let distance = this.speed * deltaTime / 1000;
     this.speed *= this.acceleration;
     this.el.object3D.translateOnAxis(this.vector, distance);
+  },
+
+  pause: function() {
+    this.pauseTime = performance.now();
+  },
+
+  play: function() {
+    this.createdAt += (performance.now() - this.pauseTime)
   }
 });

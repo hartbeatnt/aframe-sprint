@@ -9,24 +9,24 @@ AFRAME.registerComponent('missile-launcher', {
 
   init: function () {
     this.rateOfFire = 1500;
-    this.timestamp = performance.now();
+    this.createdAt = performance.now();
   },
 
-  tick: function (time) { 
-    if (time - this.timestamp > this.rateOfFire) {
+  tick: function (time) {
+    if (time - this.createdAt > this.rateOfFire) {
       let {x,y,z} = this.el.object3D.position
-      this.timestamp = time;
+      this.createdAt = time;
       this.el.emit('missile-launch', {
         position: `${x} ${y} ${z}`
       })
     }
   },
 
-  pause: function () {
-    this.timestamp = performance.now()
+  pause: function() {
+    this.pauseTime = performance.now();
   },
-  
-  play: function () {
-    this.timestamp = performance.now()
-  },
+
+  play: function() {
+    this.createdAt += (performance.now() - this.pauseTime || 0)
+  }
 });
