@@ -19,7 +19,7 @@ AFRAME.registerComponent('missile', {
 
   tick: function (time, deltaTime) {
     let target = this.target.object3D.position.clone();
-    if (this.el.object3D.position.distanceTo(target) > 1.5){
+    if (Math.abs(this.el.object3D.position.distanceTo(target)) > 1.5){
       let distance = this.speed * deltaTime / 1000;
       if (this.speed < this.maxSpeed) this.speed *= this.acceleration;
       let vector = target.sub(this.el.object3D.position).normalize();

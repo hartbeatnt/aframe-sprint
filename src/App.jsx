@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'aframe';
+import 'aframe-no-click-look-controls';
 import './components';
 import { 
   Player,
@@ -12,6 +13,7 @@ import {
    spawnEntities,
    createExplosion,
 } from './utils';
+
 const STARTING_LIVES = 3;
 
 class App extends Component {
@@ -106,9 +108,9 @@ class App extends Component {
   }
 
   loseLife() {
-    this.setState(prevState => {
-      return {lives: prevState.lives.slice(0,-1)};
-    })
+    // this.setState(prevState => {
+    //   return {lives: prevState.lives.slice(0,-1)};
+    // })
   }
 
   updateScore(points, position) {
@@ -132,13 +134,16 @@ class App extends Component {
         <a-scene ref='scene'>
           <a-assets>
             <a-asset-item id="heart" src={`${process.env.PUBLIC_URL}/models/heart.dae`} />
+            <a-asset-item id="bg" 
+              src={"https://s3-us-west-1.amazonaws.com/natehart.xyz/bubble+blaster/backgrounds/bg_000.jpg"} />
           </a-assets>
-          <a-camera>
+          <a-camera wasd-controls-enabled="false">
             <Cursor/>
+            <Player position="0 0 -5" id="player" idx="player">
+              {this.state.lives}
+            </Player>
           </a-camera>
-          <Player position="0 0 -5" id="player">
-            {this.state.lives}
-          </Player>
+          <a-sky color={"#bf69ad"}/>
           {this.state.targets}   
         </a-scene>
       </div>
